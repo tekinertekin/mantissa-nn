@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mantissa-nn"
+version = "0.1.0"
+description = "Shared neural-net primitives (Dense, backends, engine binding) for the mantissa C engine"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Tekin Ertekin" }]
+dependencies = [
+    "numpy>=1.20",
+    # Engine: kept in sync with MANTISSA_PIP_NAME / MANTISSA_MIN_VERSION in
+    # _engine.py. Now published to PyPI, so this is a hard runtime dependency.
+    # A sibling mantissa/ dev checkout is still picked up automatically when
+    # present (see _engine.load_mantissa).
+    "mantissa-core>=0.2.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/tekinertekin/mantissa-nn"
+Engine = "https://github.com/tekinertekin/mantissa"
+
+[tool.setuptools]
+packages = ["mantissa_nn"]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    # numpy 2.x on Apple Accelerate emits spurious FPE RuntimeWarnings from the
+    # BLAS matmul kernel even on finite inputs (verified finite here; same issue
+    # documented in mantissa-cnn's pyproject and mantissa-perceptron's bench).
+    "ignore:.*encountered in matmul:RuntimeWarning",
+]
