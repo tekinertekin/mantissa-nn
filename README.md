@@ -37,6 +37,21 @@ from mantissa_nn._engine import engine     # the shared mantissa.Mantissa
 The default compute path is the mantissa C engine (>= 0.2.1); `backend="numpy"`
 in the model packages selects the pure-numpy reference implementation.
 
+## The mantissa family
+
+Part of the **mantissa** family: a low-precision engine written in C, with
+small Python packages built on top. Each package sits under the one it depends
+on — ⭐ marks where you are, and every other name links to its repo.
+
+- [mantissa](https://github.com/tekinertekin/mantissa) — low-precision neural-network engine in C (the core)
+  - [mantissa-perceptron](https://github.com/tekinertekin/mantissa-perceptron) — perceptron & ADALINE, the linear classics
+  - ⭐ **mantissa-nn** — shared neural-net primitives (layers, engine binding) *(you are here)*
+    - [mantissa-cnn](https://github.com/tekinertekin/mantissa-cnn) — convolutional networks for images
+      - [mantissa-auto-encoder](https://github.com/tekinertekin/mantissa-auto-encoder) — autoencoders for denoising & super-resolution
+      - [mantissa-interpret](https://github.com/tekinertekin/mantissa-interpret) — CNN interpretability (occlusion, saliency, Grad-CAM)
+    - [mantissa-mlp](https://github.com/tekinertekin/mantissa-mlp) — multilayer perceptrons, fully-connected nets
+
+
 ## Install
 
 ```
